@@ -19,7 +19,7 @@ namespace filedb {
 
         bool isOpen() const;
 
-        void execute(const std::string& sql);
+        void execute(const std::string &sql, int (*callback)(void*, int, char**, char**), void *first_arg_to_callback);
 
         Statement prepare(const std::string& sql);
 

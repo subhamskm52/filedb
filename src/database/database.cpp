@@ -17,7 +17,7 @@ namespace filedb {
         return connection_.prepare(sql);
     }
 
-    void Database::execute(const std::string& sql) {
-        connection_.execute(sql);
+    void Database::execute(const std::string& sql, int(*callback)(void*, int, char**, char**), void* first_arg_to_callback) {
+        connection_.execute(sql, callback, first_arg_to_callback);
     }
 }
