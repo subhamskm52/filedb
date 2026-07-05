@@ -16,4 +16,4 @@ Build a lightweight, embeddable data engine that enables developers to:
 * Infer and customize column data types.
 * Export transformed data to multiple file formats.
 * Run entirely in the browser via WebAssembly.
-* Prioritize data privacy by processing data locally whenever possible, ensuring users retain control of their data without needing to upload it to external servers.
+* Prioritize data privacy by processing data locally, ensuring users retain control of their data without needing to upload it to external servers.
