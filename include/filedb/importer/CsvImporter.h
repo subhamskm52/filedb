@@ -7,7 +7,7 @@ namespace filedb::importer {
     public:
         CsvImporter() = default;
         ~CsvImporter() override = default;
-        void import(const std::filesystem::path& file_path, Database& db) override;
+        void import(const std::filesystem::path& file_path) override;
 
     };
 }

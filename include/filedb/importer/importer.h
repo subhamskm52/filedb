@@ -5,7 +5,7 @@
 namespace filedb::importer {
     class Importer {
     public:
-        virtual void import(const std::filesystem::path& file_path, Database& db ) = 0;
+        virtual void import(const std::filesystem::path& file_path) = 0;
         virtual ~Importer() = default;
     };
 }
