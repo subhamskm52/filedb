@@ -14,6 +14,11 @@ namespace filedb::model {
 
         void rename_column(std::size_t index, const std::string& name);
         void set_column_type(std::size_t index, DataType type);
+        void print() const;
+
+        Table(std::vector<std::string>& columns_, const std::vector<std::vector<std::string>>& rows_);
+        Table()=default;
+        ~Table()=default;
     };
 
 }

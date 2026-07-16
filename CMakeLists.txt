@@ -24,6 +24,7 @@ add_library(filedb
         src/database/statement.cpp
         src/database/database.cpp
         src/importer/CsvImporter.cpp
+        src/model/table.cpp
 )
 
 target_include_directories(filedb

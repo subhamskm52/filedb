@@ -1,11 +1,12 @@
 #pragma once
 #include <__filesystem/filesystem_error.h>
 #include "filedb/database/database.h"
+#include "filedb/model/table.h"
 
 namespace filedb::importer {
     class Importer {
     public:
-        virtual void import(const std::filesystem::path& file_path) = 0;
+        virtual  filedb::model::Table import(const std::filesystem::path& file_path) = 0;
         virtual ~Importer() = default;
     };
 }

@@ -5,10 +5,8 @@
 int main() {
     filedb::Database db;
 
-    std::cout << std::filesystem::current_path() << '\n';
     filedb::importer::CsvImporter importer;
-
-    importer.import("abc.csv");
-
+    auto tbl = importer.import("abc.csv");
+    tbl.print();
     return 0;
 }
