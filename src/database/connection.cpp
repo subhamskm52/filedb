@@ -50,7 +50,6 @@ namespace filedb {
         int rc = sqlite3_exec(db_, sql.c_str(), callback, param_to_callback, &err);
 
         if (rc != SQLITE_OK) {
-            std::cerr << err << std::endl;
             sqlite3_free(err);
         }
 

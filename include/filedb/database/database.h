@@ -12,7 +12,7 @@ namespace filedb {
     class Database {
     public:
         Database() = default;
-        ~Database() = default;
+        ~Database();
 
         void open(const std::string& path);
         void close();
