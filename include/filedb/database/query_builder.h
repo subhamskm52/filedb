@@ -8,9 +8,7 @@ namespace filedb {
 
     class QueryBuilder {
     public:
-        static std::string create_table(
-            const std::string& table_name,
-            const model::Table& table);
+        static std::string create_table(const model::Table& table);
 
         static std::string insert_row(
             const std::string& table_name,

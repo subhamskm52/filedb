@@ -8,6 +8,6 @@ namespace filedb::importer {
     public:
         CsvImporter() = default;
         ~CsvImporter() override = default;
-         filedb::model::Table import(const std::filesystem::path& file_path) override;
+         filedb::model::Table import(const std::filesystem::path& file_path, std::string table_name) override;
     };
 }

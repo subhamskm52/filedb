@@ -50,12 +50,11 @@ std::string QueryBuilder::escape_sql_string(
 }
 
 std::string QueryBuilder::create_table(
-    const std::string& table_name,
     const model::Table& table)
 {
     std::string query =
         "CREATE TABLE IF NOT EXISTS " +
-        table_name +
+        table.name +
         " (";
 
     for (size_t i = 0; i < table.columns.size(); ++i) {

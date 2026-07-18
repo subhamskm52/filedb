@@ -6,7 +6,7 @@
 namespace filedb::importer {
     class Importer {
     public:
-        virtual  filedb::model::Table import(const std::filesystem::path& file_path) = 0;
+        virtual  filedb::model::Table import(const std::filesystem::path& file_path, std::string table_name) = 0;
         virtual ~Importer() = default;
     };
 }

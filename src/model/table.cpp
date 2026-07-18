@@ -5,9 +5,10 @@
 namespace filedb::model {
 
     Table::Table(
-        std::vector<std::string>& columns_,
+        const std::string& name_,
+        const std::vector<std::string>& columns_,
         const std::vector<std::vector<std::string>>& rows_)
-        : rows(rows_)
+        : name(name_), rows(rows_)
     {
         for (const auto& col : columns_) {
             columns.emplace_back(Column{col, DataType::String});

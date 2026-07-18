@@ -3,7 +3,7 @@
 #include <filedb/model/table.h>
 
 namespace filedb::importer {
-     filedb::model::Table CsvImporter::import(const std::filesystem::path &file_path) {
+     filedb::model::Table CsvImporter::import(const std::filesystem::path &file_path, std::string table_name) {
         try {
             if (!std::filesystem::exists(file_path)) {
                 throw std::runtime_error(
@@ -28,7 +28,7 @@ namespace filedb::importer {
             for (csv::CSVRow& row: csv_file) {
                 rows.emplace_back(row);
             }
-            return filedb::model::Table{columns, rows};
+            return filedb::model::Table{table_name,columns, rows};
         }
         catch (const std::filesystem::filesystem_error& e) {
             throw std::runtime_error(

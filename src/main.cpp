@@ -8,14 +8,16 @@ int main() {
     filedb::Database db;
     db.open(":memory:");
     filedb::importer::CsvImporter importer;
-    auto tbl = importer.import("abc.csv");
+    auto tbl = importer.import("abc.csv", "users");
     // tbl.print();
     auto create_sql =
-        filedb::QueryBuilder::create_table("users", tbl);
+        filedb::QueryBuilder::create_table(tbl);
     db.execute(create_sql, nullptr, nullptr);
 
-    auto row_sql = filedb::QueryBuilder::insert_row("users",tbl,tbl.rows[0]);
-    db.execute(row_sql, nullptr, nullptr);
+    for (auto row : tbl.rows) {
+        auto row_sql = filedb::QueryBuilder::insert_row("users",tbl,row);
+        db.execute(row_sql, nullptr, nullptr);
+    }
     db.execute(
         "SELECT * FROM users",
         [](void* data, int argc, char** argv, char** colNames) -> int {

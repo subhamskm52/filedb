@@ -6,6 +6,7 @@ namespace filedb::model {
 
     class Table {
     public:
+        std::string name;
         std::vector<Column> columns;
         std::vector<std::vector<std::string>> rows;
 
@@ -16,7 +17,7 @@ namespace filedb::model {
         void set_column_type(std::size_t index, DataType type);
         void print() const;
 
-        Table(std::vector<std::string>& columns_, const std::vector<std::vector<std::string>>& rows_);
+        Table(const std::string& name, const std::vector<std::string>& columns_, const std::vector<std::vector<std::string>>& rows_);
         Table()=default;
         ~Table()=default;
     };
