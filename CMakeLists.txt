@@ -26,6 +26,8 @@ add_library(filedb
         src/importer/CsvImporter.cpp
         src/model/table.cpp
         src/database/query_builder.cpp
+        include/filedb/exporter/exporter.h
+        src/exporter/exporter.cpp
 )
 
 target_include_directories(filedb
