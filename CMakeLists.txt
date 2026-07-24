@@ -34,6 +34,7 @@ target_include_directories(filedb
         PUBLIC
         include
         external/csv
+        external/spdlog-1.17.0/include
 )
 
 target_link_libraries(filedb
