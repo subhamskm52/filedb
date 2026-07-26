@@ -53,3 +53,9 @@ target_link_libraries(filedb-cli
         PRIVATE
         filedb
 )
+
+add_executable(filedb-test test/main.cpp)
+target_link_libraries(filedb-test
+        PRIVATE
+        filedb
+)
