@@ -28,6 +28,7 @@ add_library(filedb
         src/database/query_builder.cpp
         include/filedb/exporter/exporter.h
         src/exporter/exporter.cpp
+        include/filedb/logger/Logger.h
 )
 
 target_include_directories(filedb
