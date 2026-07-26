@@ -10,14 +10,14 @@ namespace filedb {
     class Logger {
     private:
         Logger() = default;
-        std::shared_ptr<spdlog::logger> logger_;
+        inline static std::shared_ptr<spdlog::logger> logger_;
     public:
-        std::shared_ptr<spdlog::logger> get_logger() {
+        static std::shared_ptr<spdlog::logger> instance() {
             if (!logger_) init();
             return logger_;
         }
 
-        void init() {
+        static void init() {
             if (logger_) return;
             logger_ = spdlog::stdout_color_mt("filedb");
             logger_->set_pattern(

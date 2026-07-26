@@ -1,6 +1,6 @@
 #include "filedb/database/query_builder.h"
-
-#include <stdexcept>
+#include "filedb/exception.h"
+#include "filedb/logger/Logger.h"
 
 namespace filedb {
 
@@ -32,7 +32,10 @@ std::string QueryBuilder::to_sqlite_type(model::DataType type)
             return "NULL";
     }
 
-    throw std::runtime_error("Unsupported data type");
+    Logger::instance()->error(
+        "Unsupported data type encountered while generating SQLite type");
+
+    throw Exception("Unsupported data type");
 }
 
 std::string QueryBuilder::escape_sql_string(
@@ -52,6 +55,10 @@ std::string QueryBuilder::escape_sql_string(
 std::string QueryBuilder::create_table(
     const model::Table& table)
 {
+    Logger::instance()->debug(
+        "Building CREATE TABLE query for '{}'",
+        table.name);
+
     std::string query =
         "CREATE TABLE IF NOT EXISTS " +
         table.name +
@@ -72,6 +79,10 @@ std::string QueryBuilder::create_table(
 
     query += ");";
 
+    Logger::instance()->trace(
+        "Generated CREATE TABLE query: {}",
+        query);
+
     return query;
 }
 
@@ -81,9 +92,21 @@ std::string QueryBuilder::insert_row(
     const std::vector<std::string>& row)
 {
     if (table.columns.size() != row.size()) {
-        throw std::invalid_argument(
+
+        Logger::instance()->error(
+            "INSERT query generation failed for table '{}': "
+            "column count ({}) does not match row size ({})",
+            table_name,
+            table.columns.size(),
+            row.size());
+
+        throw ValidationException(
             "column count and row size must match");
     }
+
+    Logger::instance()->debug(
+        "Building INSERT query for table '{}'",
+        table_name);
 
     std::string query =
         "INSERT INTO " +
@@ -113,6 +136,10 @@ std::string QueryBuilder::insert_row(
     }
 
     query += ");";
+
+    Logger::instance()->trace(
+        "Generated INSERT query: {}",
+        query);
 
     return query;
 }
