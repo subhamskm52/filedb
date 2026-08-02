@@ -9,6 +9,7 @@ Phase 1: Core Engine
 ✓  Schema API
 ✓ Custom Exceptions
 ✓  Unit Tests
+✓ linker for js -- linkers -- wasm-linker.cpp
 
 Phase 2: Data Exchange
 ----------------------

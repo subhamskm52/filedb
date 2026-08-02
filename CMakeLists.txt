@@ -26,7 +26,6 @@ add_library(filedb
         src/importer/CsvImporter.cpp
         src/model/table.cpp
         src/database/query_builder.cpp
-        include/filedb/exporter/exporter.h
         src/exporter/exporter.cpp
 )
 
@@ -35,6 +34,7 @@ target_include_directories(filedb
         include
         external/csv
         external/spdlog-1.17.0/include
+        external/json
 )
 
 target_link_libraries(filedb
@@ -58,4 +58,30 @@ add_executable(filedb-test test/main.cpp)
 target_link_libraries(filedb-test
         PRIVATE
         filedb
+)
+
+add_executable(filedb-example
+        example/hello-world.cpp
+)
+
+target_link_libraries(filedb-example
+        PRIVATE
+        filedb
+)
+
+
+
+add_executable(filedb-wasm
+        binding/wasm_api.cpp
+)
+target_link_libraries(filedb-wasm
+        PRIVATE
+        filedb
+)
+
+target_link_options(filedb-wasm PRIVATE
+        "-sMODULARIZE=1"
+        "-sEXPORT_ES6=1"
+        "-sEXPORTED_FUNCTIONS=[\"_db_open\",\"_db_import_csv\",\"_db_execute\",\"_db_query\"]"
+        "-sEXPORTED_RUNTIME_METHODS=[\"ccall\",\"UTF8ToString\"]"
 )
