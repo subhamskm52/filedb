@@ -5,6 +5,8 @@
 
 #include <string>
 
+#include "filedb/importer/json-importer.h"
+
 static filedb::Database g_db;
 
 extern "C" {
@@ -56,6 +58,40 @@ extern "C" {
             );
         }
 
+        return 0;
+    }
+
+    /**
+     * Import JSON into a table
+     */
+    int db_import_json(const char* json_path, const char* table_name) {
+        filedb::importer::JsonImporter imptr;
+        filedb::model::Table tbl = imptr.import(json_path, table_name);
+
+        auto create_sql =
+            filedb::QueryBuilder::create_table(tbl);
+
+        g_db.execute(
+            create_sql,
+            nullptr,
+            nullptr
+        );
+
+        for (auto& row : tbl.rows) {
+
+            auto row_sql =
+                filedb::QueryBuilder::insert_row(
+                    table_name,
+                    tbl,
+                    row
+                );
+
+            g_db.execute(
+                row_sql,
+                nullptr,
+                nullptr
+            );
+        }
         return 0;
     }
 
