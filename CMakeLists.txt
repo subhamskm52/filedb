@@ -27,6 +27,8 @@ add_library(filedb
         src/model/table.cpp
         src/database/query_builder.cpp
         src/exporter/exporter.cpp
+        include/filedb/importer/json-importer.h
+        src/importer/json-importer.cpp
 )
 
 target_include_directories(filedb
