@@ -126,9 +126,13 @@ std::string QueryBuilder::insert_row(
 
     for (size_t i = 0; i < row.size(); ++i) {
 
-        query += "'";
-        query += escape_sql_string(row[i]);
-        query += "'";
+        if (!row[i].empty()) {
+            query += "'";
+            query += escape_sql_string(row[i]);
+            query += "'";
+        }
+        else
+            query+="NULL";
 
         if (i + 1 < row.size()) {
             query += ", ";
