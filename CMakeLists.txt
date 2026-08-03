@@ -64,6 +64,7 @@ target_link_libraries(filedb-test
 
 add_executable(filedb-example
         example/hello-world.cpp
+        example/json-csv-import-example.cpp
 )
 
 target_link_libraries(filedb-example
@@ -76,6 +77,8 @@ target_link_libraries(filedb-example
 add_executable(filedb-wasm
         binding/wasm_api.cpp
 )
+target_compile_options(filedb-wasm PRIVATE -fexceptions)
+target_compile_options(filedb PRIVATE -fexceptions)
 target_link_libraries(filedb-wasm
         PRIVATE
         filedb
@@ -84,6 +87,10 @@ target_link_libraries(filedb-wasm
 target_link_options(filedb-wasm PRIVATE
         "-sMODULARIZE=1"
         "-sEXPORT_ES6=1"
-        "-sEXPORTED_FUNCTIONS=[\"_db_open\",\"_db_import_csv\",\"_db_execute\",\"_db_query\"]"
-        "-sEXPORTED_RUNTIME_METHODS=[\"ccall\",\"UTF8ToString\"]"
+        "-sASSERTIONS=1"
+        "-sDISABLE_EXCEPTION_CATCHING=0"
+        "-sALLOW_MEMORY_GROWTH=1"
+        "-sFORCE_FILESYSTEM=1"
+        "-sEXPORTED_FUNCTIONS=[\"_db_open\",\"_db_import_csv\",\"_db_import_json\",\"_db_execute\",\"_db_query\",\"_db_last_error\"]"
+        "-sEXPORTED_RUNTIME_METHODS=[\"ccall\",\"cwrap\",\"FS\",\"UTF8ToString\"]"
 )
