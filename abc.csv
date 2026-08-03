@@ -1,9 +1,0 @@
-product_id,product_name,category,price,in_stock,rating,launch_date
-101,iPhone 15,Electronics,799.99,true,4.8,2023-09-22
-102,Galaxy S24,Electronics,749.99,true,4.7,2024-01-17
-103,MacBook Air,Computers,1199.00,true,4.9,2024-03-08
-104,Office Chair,Furniture,189.50,false,4.3,2022-11-15
-105,Mechanical Keyboard,Accessories,129.99,true,4.6,2023-05-10
-106,27 Inch Monitor,Computers,299.99,true,4.5,2024-02-20
-107,Wireless Mouse,Accessories,49.99,true,4.4,2022-08-12
-108,Standing Desk,Furniture,399.00,false,4.7,2023-07-01
