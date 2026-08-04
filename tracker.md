@@ -10,11 +10,12 @@ Phase 1: Core Engine
 ✓ Custom Exceptions
 ✓  Unit Tests
 ✓ linker for js -- linkers -- wasm-linker.cpp
+1. return code for wasm linker
 
 Phase 2: Data Exchange
 ----------------------
 6. CSV Export
-7. JSON Import
+✓  JSON Import
 8. JSON Export
 
 Phase 3: Developer Experience
@@ -26,9 +27,9 @@ Phase 3: Developer Experience
 
 Phase 4: Platform
 -----------------
-13. WASM Build
+✓  WASM Build
 14. Browser Examples
-15. React Integration
+✓  React Integration
 
 Phase 5: Additional Formats
 ---------------------------
