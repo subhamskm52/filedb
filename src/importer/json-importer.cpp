@@ -65,9 +65,17 @@ namespace filedb::importer {
         model::Table tbl{table_name, {}, {}};
 
         std::unordered_map<std::string, std::size_t> col_index;
-        for (const auto& col : columns) {
-            col_index[col.first] = tbl.columns.size();
-            tbl.columns.emplace_back(model::Column(col.first, col.second));
+        for (const auto&[name, type] : columns) {
+            col_index[name] = tbl.columns.size();
+                std::string filtered_col = name;
+                filtered_col.erase(
+                    std::remove_if(filtered_col.begin(), filtered_col.end(),
+                    [](unsigned char c) {
+                        return !(std::isalnum(c) || c == '_');
+                    }
+                )
+            );
+            tbl.columns.emplace_back(model::Column(filtered_col, type));
         }
 
         std::vector<std::vector<std::string>> rows;

@@ -53,6 +53,17 @@ filedb::model::Table CsvImporter::import(
         std::vector<std::string> columns =
             csv_file.get_col_names();
 
+        for (auto& column : columns) {
+            column.erase(
+                std::remove_if(column.begin(), column.end(),
+                    [](unsigned char c) {
+                        return !(std::isalnum(c) || c=='_');
+                    }
+                    )
+                );
+        }
+
+
         Logger::instance()->debug(
             "Detected {} columns in CSV",
             columns.size());

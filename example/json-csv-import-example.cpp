@@ -14,13 +14,13 @@ int main() {
 
     auto products =
         jsonImporter.import(
-            "./data/products.json",
+            "../data/products.json",
             "products"
         );
 
     auto orders =
         csvImporter.import(
-            "./data/orders.csv",
+            "../data/orders.csv",
             "orders"
         );
 

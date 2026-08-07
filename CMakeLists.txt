@@ -63,7 +63,6 @@ target_link_libraries(filedb-test
 )
 
 add_executable(filedb-example
-        example/hello-world.cpp
         example/json-csv-import-example.cpp
 )
 
